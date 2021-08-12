@@ -17,23 +17,17 @@ import java.util.ArrayList;
  * @date 2021/7/27 13:49
  */
 public class DatabaseMetadataDocumentBuilder {
-    private static Connection conn = getConn();
-
+    public static final String url = "jdbc:mysql://101.201.35.77:3306/cl_mes?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=False&serverTimezone=GMT%2B8";
+    public static final String userName = "chaoliuroot";
+    public static final String password = "chaoliupwd1234";
+    public static final String dbName = "cl_mes";
+    public static final String markdownName = "cl_mes.md";
+    private static final Connection conn = getConn();
 
     public static Connection getConn() {
         try {
             Class.forName(Driver.class.getName());
-            return DriverManager.getConnection(
-                    "jdbc:mysql://rm-bp1n04551l53r08u2.mysql.rds.aliyuncs.com:3306/mango" +
-                            "?useUnicode=true" +
-                            "&characterEncoding=utf8" +
-                            "&useSSL=false" +
-                            "&allowMultiQueries=true" +
-                            "&serverTimezone=Asia/Shanghai" +
-                            "&remarksReporting=true",
-                    "bq2018",
-                    "^91!42*0c@8-3#9"
-            );
+            return DriverManager.getConnection(url, userName, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,7 +36,7 @@ public class DatabaseMetadataDocumentBuilder {
 
     public static void main(String[] args) throws Exception {
         //createXmind("mango_server.xmind");
-        createMarkdown("mango.md");
+        createMarkdown(markdownName);
 
     }
 
@@ -92,7 +86,7 @@ public class DatabaseMetadataDocumentBuilder {
 
     public static void createMarkdown(String file) throws Exception {
         BufferedWriter writer = Files.newBufferedWriter(Paths.get(file), StandardCharsets.UTF_8);
-        ArrayList<TableInfo> tables = getTableInfos("mango");
+        ArrayList<TableInfo> tables = getTableInfos(dbName);
 
 
         writer.append("# mango 数据库表结构");
@@ -128,7 +122,7 @@ public class DatabaseMetadataDocumentBuilder {
     private static ArrayList<ColumnInfo> getColumns(String tableName) throws SQLException {
         ArrayList<ColumnInfo> columnInfos = new ArrayList<ColumnInfo>();
         String sql = String.format("SELECT column_name,column_type,column_comment  " +
-                "FROM INFORMATION_SCHEMA.COLUMNS where table_schema = 'mango' and table_name = '%s'", tableName);
+                "FROM INFORMATION_SCHEMA.COLUMNS where table_schema = '" + dbName + "' and table_name = '%s'", tableName);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
