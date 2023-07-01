@@ -1,0 +1,5 @@
+hostname: 10.18.10.21
+port: 3306
+dbName: iesp_test
+username: iesp_test
+password: iesp@dmin111

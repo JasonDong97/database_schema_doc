@@ -1,4 +1,4 @@
-package demo.djx;
+package com.djx.entity;
 
 import lombok.Data;
 
