@@ -6,6 +6,7 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Data
 public class Config {
@@ -15,6 +16,7 @@ public class Config {
     private String dbName;
     private String username;
     private String password;
+    private List<String> exportTableNames;
 
     private Config() {
     }

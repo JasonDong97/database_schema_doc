@@ -1,5 +1,16 @@
 hostname: 10.18.10.21
 port: 3306
-dbName: iesp_test
-username: iesp_test
-password: iesp@dmin111
+dbName: era-dev
+username: era
+password: era@dmin222
+
+exportTableNames:
+  - daily_bill
+  - general_resource_price
+  - gpu_resource
+  - gpu_resource_price_history
+  - monthly_bill
+  - workspace_resource_gpu_history
+  - workspace_resource_history
+  - workspace_usage_record
+
