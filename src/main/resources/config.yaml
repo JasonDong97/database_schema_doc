@@ -1,16 +1,25 @@
-hostname: 10.18.10.21
+hostname: 10.18.10.111
 port: 3306
-dbName: era-dev
-username: era
-password: era@dmin222
+dbName: guoyi_quantum
+username: root
+password: EybTcTBcJCdjwOFh
 
 exportTableNames:
+  - enterprise
+  - sys_user
+  - sys_role
+  - sys_menu
+  - sys_user_jupyter
+  - sys_user_role
+  - sys_role_menu
+  - sys_minio_file
+  - fund_account
+  - fund_cost
   - daily_bill
-  - general_resource_price
-  - gpu_resource
-  - gpu_resource_price_history
   - monthly_bill
-  - workspace_resource_gpu_history
-  - workspace_resource_history
-  - workspace_usage_record
-
+  - bill_transaction
+  - task
+  - simulator
+  - simulator_instance
+  - simulator_logical_gate
+  - simulator_instance_logical_gate
