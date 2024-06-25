@@ -51,18 +51,22 @@ public class DatabaseDocumentBuilder {
 
             writer.append("# ").append(config.getDbName()).append(" 数据库表结构");
             writer.newLine();
+            writer.append("## 概要说明");
+            writer.newLine();
             writer.newLine();
             writer.append("|表名|描述|");
             writer.newLine();
-            writer.append("|:---:|:---:|");
+            writer.append("|:---|:---|");
             writer.newLine();
             for (TableInfo table : tables) {
                 writer.append(String.format("|`%s`|%s|", table.getTableName(), table.getRemark().replaceAll("\n", "")));
                 writer.newLine();
             }
             writer.newLine();
+            writer.append("## 详细说明");
+            writer.newLine();
             for (TableInfo table : tables) {
-                writer.append("## ").append(table.getRemark()).append(" ").append(table.getTableName());
+                writer.append("### ").append(table.getRemark()).append(" ").append(table.getTableName());
                 writer.newLine();
                 writer.newLine();
                 writer.append("|列名|类型|描述|\n");
